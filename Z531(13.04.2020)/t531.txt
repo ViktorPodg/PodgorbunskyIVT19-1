@@ -1,0 +1,12 @@
+Begin spisok
+ 3.00 2.00
+Rezult spisok
+ 1.00
+Begin spisok
+ 1.50 2.50 3.50 4.50 6.50
+Rezult spisok
+-5.00-4.00-3.00-2.00
+Begin spisok
+ 1.50 2.50 3.50 4.50 5.50 6.50
+Rezult spisok
+-5.00-4.00-3.00-2.00-1.00
