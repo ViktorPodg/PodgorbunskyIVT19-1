@@ -1,0 +1,59 @@
+.container{
+/*   Заменить на 1480 */
+  width: 1480px;
+  margin: 0 auto;
+}
+
+
+header{
+  display: flex;
+  flex-direction: row;
+  
+  justify-content: space-between;
+}
+
+
+.call-us{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+/* Навигация */
+.main-nav{
+  display: flex; 
+}
+
+
+
+/* Основная часть */
+main{
+  display: flex;
+  flex-direction: row;
+}
+
+
+main section{
+  display: flex;
+  flex-direction: column;
+  flex: 2.5;
+}
+
+
+.row{
+  margin-top: 20px;
+  margin-bottom: 20px;}
+
+
+
+footer{
+  width: 112%;
+  height: 100px;
+  background: #dbadad;
+  
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
