@@ -38,6 +38,8 @@ uses SysUtils, Dialogs,Controls;          //Модули для ввода/вывода данных
 
    procedure Result(var t: PUzel; var ftxt: Text); {Выводит итоговый результат}
 
+   procedure searchNameTovar (var a:PUzel; var s:string);
+
 implementation
 
 uses U_KR;
@@ -239,6 +241,27 @@ begin
     end;
     ShowMessage('Итоговая сумма продажи за день : '+FloatToStr(s)+'р');
 end;
+
+procedure searchNameTovar (var a:PUzel; var s:string); //процедура поиска по наименованию товара
+var p:PUzel;
+    st,t:string;
+    i:integer;
+begin
+  p:=a;
+  while p<>nil do
+    begin
+      if p^.x.NazTov = s then
+        begin
+          st:=st+('Наименование товара: '+p^.x.NazTov +' | '+'Объем продажи: '+ IntToStr(p^.x.ObTov)+
+          ' | '+'Стоимость покупки: '+ FloatToStr(p^.x. StoimPok)+' | '+'ФИО продавца: '+p^.x.Fam+' '+p^.x.Nam+' '+p^.x.Otch+';'+#13  );
+        end;
+      p:=p^.next;
+    end;
+    if st='' then
+      begin
+        ShowMessage('Совпадений не найдено');
+      end
+    else
+       ShowMessage('Результаты поиска по запросу "Наименование товара": '+s+#13+st);
+end;
 end.
-
-

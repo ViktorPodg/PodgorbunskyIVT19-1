@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = -27
-  Top = 172
+  Left = -8
+  Top = -8
   Width = 1382
   Height = 744
   Caption = #1041#1072#1079#1072' '#1076#1072#1085#1085#1099#1093' '#1087#1088#1086#1076#1072#1078#1080' '#1090#1086#1074#1072#1088#1086#1074' '#1074' '#1084#1072#1075#1072#1079#1080#1085#1077' '
@@ -16,7 +16,7 @@ object Form1: TForm1
   TextHeight = 13
   object Image1: TImage
     Left = -105
-    Top = 0
+    Top = -103
     Width = 1620
     Height = 875
     Picture.Data = {
@@ -14286,11 +14286,11 @@ object Form1: TForm1
       D9}
   end
   object StringGrid1: TStringGrid
-    Left = 335
-    Top = 108
-    Width = 678
-    Height = 452
-    RowCount = 20
+    Left = 344
+    Top = 196
+    Width = 660
+    Height = 366
+    RowCount = 7
     TabOrder = 0
     ColWidths = (
       64
@@ -14302,19 +14302,6 @@ object Form1: TForm1
       24
       24
       23
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
       24
       24
       24
@@ -14352,6 +14339,10 @@ object Form1: TForm1
     end
     object List1: TMenuItem
       Caption = 'List'
+      object FormCreate1: TMenuItem
+        Caption = 'Form Create'
+        OnClick = FormCreate1Click
+      end
       object BuildList1: TMenuItem
         Caption = 'Build List'
         OnClick = BuildList1Click
@@ -14364,10 +14355,6 @@ object Form1: TForm1
         Caption = 'Result'
         OnClick = Result1Click
       end
-      object FormCreate1: TMenuItem
-        Caption = 'Form Create'
-        OnClick = FormCreate1Click
-      end
     end
     object Delete1: TMenuItem
       Caption = 'Delete'
@@ -14375,6 +14362,14 @@ object Form1: TForm1
         Caption = 'Delete List'
         OnClick = DelList1Click
       end
+    end
+    object Search: TMenuItem
+      Caption = 'SearchTovar'
+      OnClick = SearchClick
+    end
+    object Sort: TMenuItem
+      Caption = 'Sort'
+      OnClick = SortClick
     end
     object Exit1: TMenuItem
       Caption = 'Exit'

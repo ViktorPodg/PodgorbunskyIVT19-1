@@ -27,6 +27,8 @@ type
     CloseTxtFile1: TMenuItem;
     CloseTipFile1: TMenuItem;
     Image1: TImage;
+    Search: TMenuItem;
+    Sort: TMenuItem;
     procedure OpenTxtFile1Click(Sender: TObject);  //Процедура открытия текстового файла
     procedure CloseTxtFile1Click(Sender: TObject); //Процедура закрытия текстового файла
     procedure OpenTipFile1Click(Sender: TObject);  //Процедура открытия типизированного файла
@@ -39,7 +41,9 @@ type
     procedure Exit1Click(Sender: TObject);        //Процедура выхода из программы
     procedure DelList1Click(Sender: TObject);     //Процедура удаления списка
     procedure Result1Click(Sender: TObject);      //Процедура вывода информации за день
-    
+    procedure SearchClick(Sender: TObject);
+    procedure SortClick(Sender: TObject);
+
   private
     { Private declarations }
   public
@@ -164,6 +168,53 @@ begin
  Result(PList, ftxt);
 end;
 
+//Поиск по названию журнала
+procedure TForm1.SearchClick(Sender: TObject);
+var s:string;
+begin
+          if InputQuery('Поиск', 'Введите наименование продукта для поиска', s) then
+            begin
+              if s<>'' then
+                begin
+                  searchNameTovar(PList,s);
+                end
+              else
+                begin
+                  showmessage('Данные не были введены');
+                end;
+             end
+           else
+            begin
+              exit;
+            end;
+         end;
 
+
+
+
+
+procedure TForm1.SortClick(Sender: TObject);
+var
+  SlSort, SlRow : TStringList;
+  i, j, aCol : Integer;
+begin
+  aCol := StrinGgrid1.FixedCols;
+
+  SlSort := TStringList.Create;
+  for i := StrinGgrid1.FixedRows to StrinGgrid1.RowCount - 1 do begin
+    SlRow := TStringList.Create;
+    SlRow.Assign(StrinGgrid1.Rows[i]);
+    SlSort.AddObject(StrinGgrid1.Cells[aCol, i], SlRow);
+  end;
+  SlSort.Sort;
+  j := 0;
+  for i := StrinGgrid1.FixedRows to StrinGgrid1.RowCount - 1 do begin
+    SlRow := Pointer(SlSort.Objects[j]);
+    StrinGgrid1.Rows[i].Assign(SlRow);
+    SlRow.Free;
+    Inc(j);
+  end;
+  SlSort.Free;
+end;
 
 end.
