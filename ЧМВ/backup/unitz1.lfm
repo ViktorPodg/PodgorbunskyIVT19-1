@@ -1,7 +1,7 @@
 object Z1: TZ1
-  Left = 541
+  Left = 1019
   Height = 292
-  Top = 113
+  Top = 133
   Width = 292
   Caption = 'Задача 1'
   ClientHeight = 272

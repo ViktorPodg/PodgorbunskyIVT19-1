@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Menus,
-  ExtCtrls;
+  ExtCtrls, Unit1;
 
 type
 
@@ -42,7 +42,7 @@ type
 
 var
   Z1: TZ1;
-  l,g: real;
+  g,l,T:real;
 
 implementation
 
@@ -51,30 +51,25 @@ implementation
 { TZ1 }
 
 procedure TZ1.ButtonClick(Sender: TObject);
-var T: real;
 begin
-DataFromForm();
-g:=strToFloat(gEdit.text);
-T:=2*pi*sqrt(l/g);
-
-    Memo.Lines.Add('Длина нити='+ FloatToStr(l)+'           '
+  DataFromForm();
+  g:=strToFloat(gEdit.text);
+  T:=calc_population(l,g);
+  Memo.Lines.Add('Длина нити='+ FloatToStr(l)+'           '
    +'Ускорение своб.пад.='+ FloatToStr(g) +'   '
    +'Результат='+FloatToStr(T));
 end;
 
 procedure TZ1.OpenClick(Sender: TObject);
-var f: textfile;
-  FName, s1: string;
 begin
-  if FOpenDialog.Execute then
-begin
-FName := FOpenDialog.FileName;
-AssignFile(f,FName);
-Reset(f);
-readln(f,s1);
-lEdit.Text:= s1;
-end;
-closeFile(f);
+  if FSaveDialog.Execute then
+      begin
+        if FSaveDialog.FileName <> '' then  // пользователь мог не выбрать имя файла, а просто закрыть окно//
+          begin
+          load_params(l, FSaveDialog.FileName);
+          lEdit.Text:= floattostr( l );
+          end;
+      end;
 end;
 
 procedure TZ1.QuitClick(Sender: TObject);
@@ -83,21 +78,20 @@ begin
 end;
 
 procedure TZ1.SaveClick(Sender: TObject);
-var f: textfile;
-  FName, s1: string;
 begin
-if FSaveDialog.Execute then
-FName := FSaveDialog.FileName;
-AssignFile(f,FName);
-Rewrite(f);
-s1:=lEdit.Text;
-writeln(f,s1);
-closeFile(f);
+  if FSaveDialog.Execute then
+      if FSaveDialog.FileName <> '' then
+        begin
+          DataFromForm();
+          save_params(l, FSaveDialog.FileName);
+end;
 end;
 
 procedure TZ1.SaveResultClick(Sender: TObject);
 begin
-  Memo.Lines.SaveToFile('Result.txt');
+  if FSaveDialog.Execute then
+      if FSaveDialog.FileName <> '' then
+          Memo.Lines.SaveToFile( FSaveDialog.FileName );
 end;
 
 procedure TZ1.DataFromForm();
